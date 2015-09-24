@@ -54,7 +54,12 @@ module MySQLAPI
     end
 
     def response(content, status = 200, headers = {})
-      [status, headers.merge({'Content-Type' => 'application/json', 'User-Agent' => "MySQLAPI/#{MySQLAPI::VERSION}"}), [content.to_json]]
+      [status, headers.merge({
+        "Content-Type" => "application/json",
+        "User-Agent" => "MySQLAPI/#{MySQLAPI::VERSION}",
+        "Access-Control-Allow-Origin" => "*",
+        "Access-Control-Allow-Methods" => "*"
+      }), [content.to_json]]
     end
 
     def params
