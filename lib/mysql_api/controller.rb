@@ -70,7 +70,8 @@ module MySQLAPI
     end
 
     def query_result_to_hash(results)
-      {:status => 'ok', :size => results.size, :cols => results.size == 0 ? [] : results.first.keys, :rows => results.to_a.map(&:values)}
+      results = results.to_a
+      {:status => 'ok', :size => results.size, :cols => results.size == 0 ? [] : results.first.keys, :rows => results.map(&:values)}
     end
 
   end
